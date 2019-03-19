@@ -15,7 +15,7 @@ class ErrorTemplate(object):
 
     section_separator = '\n'
 
-    header = '\nTest Failed:'
+    header = '\n\u001b[31mTest Failed:\u001b[31m'
 
     def __init__(self):
         self.sections = []

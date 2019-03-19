@@ -29,7 +29,7 @@ class MyAssertionReporter(AssertionReporter):
         # Assertion expression value
         s = pprint.pformat(self.ctx.subject)
 
-        assertion = self.template.format(s)
+        assertion = self.template.format("\u001b[31m{0}\u001b[31m".format(s))
 
         # Return assertion formatted sentence
         return assertion
