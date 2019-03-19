@@ -109,6 +109,11 @@ class CodeReporter(BaseReporter):
     def run(self, error):
         if not config.show_code:
             return None
-
+        show_code = any([
+            self.ctx.show_code,
+            self.from_operator('show_code', False)
+        ])
+        if not show_code:
+            return
         trace = self.find_trace()
         return self.render_code(trace) if trace else None

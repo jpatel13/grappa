@@ -13,9 +13,9 @@ class ErrorTemplate(object):
 
     separator = ' ' * 6
 
-    section_separator = '\n\n  '
+    section_separator = '\n'
 
-    header = 'Oops! Something went wrong!'
+    header = '\nTest Failed:'
 
     def __init__(self):
         self.sections = []
@@ -42,10 +42,11 @@ class ErrorTemplate(object):
             if hasattr(item, 'render')
         )
 
-    def block(self, title, content):
+    def block(self, title, content, subject):
         # If no content, just exit
         if not content:
             return self
+
 
         # If iterable type, aggregate elements and format them
         if isinstance(content, (tuple, list)):
@@ -54,7 +55,8 @@ class ErrorTemplate(object):
         # Register section object
         self.sections.append({
             'title': title,
-            'content': content
+            'content': content,
+            'data': subject
         })
 
         return self

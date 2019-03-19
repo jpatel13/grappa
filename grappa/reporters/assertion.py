@@ -7,12 +7,12 @@ class AssertionReporter(BaseReporter):
 
     title = 'The following assertion was not satisfied'
 
-    template = 'subject "{}" {} {}'
+    template = '{} {} {}'
 
     def get_expected(self, operator=None, defaults=None):
         # Expected value
         expected = self.from_operator('expected', defaults, operator=operator)
-
+ 
         if isinstance(expected, tuple):
             if len(expected) == 0:
                 expected = empty
@@ -31,8 +31,18 @@ class AssertionReporter(BaseReporter):
 
     def run(self, error):
         # Assertion expression value
+        show_assertion = any([
+            self.ctx.show_assertion,
+            self.from_operator('show_assertion', False)
+        ])
+        if not show_assertion:
+            return
+
         subject = self.normalize(
             self.from_operator('subject', self.ctx.subject), use_raw=False)
+
+
+
 
         # List of used keyword operators
         keywords = []
@@ -48,7 +58,10 @@ class AssertionReporter(BaseReporter):
         operators = ' '.join(keywords).replace('_', ' ')
 
         # Assertion expression value
-        assertion = self.template.format(subject, self.ctx.style, operators)
+        if ((type(self.ctx.subject) == dict) or (type(self.ctx.subject) == list)):
+          assertion = self.template.format("Result set", self.ctx.style, 'empty.')
+        else:
+          assertion = self.template.format(subject, self.ctx.style, operators)
 
         # Return assertion formatted sentence
         return assertion

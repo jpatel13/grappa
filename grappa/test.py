@@ -33,7 +33,7 @@ class Test(BaseTest):
         self._ctx.subject = subject
         self._ctx.chained = False
         self._ctx.style = 'should'
-
+        self._ctx.subject_type = type(subject)
     @property
     def should(self):
         """

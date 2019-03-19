@@ -17,6 +17,13 @@ class UnexpectedError(BaseReporter):
         if not err:
             return None
 
+        show_error = any([
+            self.ctx.show_error,
+            self.from_operator('show_error', False)
+        ])
+        if not show_error:
+            return
+
         # Load error reasons
         error.reasons = getattr(error, 'reasons', self.default_reasons)
 

@@ -16,6 +16,7 @@ operators = (
     ('match',       'MatchOperator'),
     ('length',      'LengthOperator'),
     ('empty',       'EmptyOperator'),
+    ('emptydict',   'EmptyDictOperator'),
     ('equal',       'EqualOperator'),
     ('within',      'WithinOperator'),
     ('present',     'PresentOperator'),

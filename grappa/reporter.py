@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from .reporters import reporters
+from .reporters import myreporters
 from .template import ErrorTemplate
 
 
@@ -13,9 +14,10 @@ class ErrorReporter(object):
         self.ctx = ctx
 
     def render_reporters(self, template, error):
+        #report_set = myreporters if type(self.ctx.subject) == dict else reporters
         for Reporter in reporters:
             report = Reporter(self.ctx, error).run(error)
-            template.block(Reporter.title, report)
+            template.block(Reporter.title, report,self.ctx.subject)
 
     def run(self, error):
         # Create error template generator

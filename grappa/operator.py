@@ -194,6 +194,18 @@ class Operator(object):
         return self._make_error(reasons=reasons)
 
     def run(self, *args, **kw):
+        show_diff = False
+        show_code = False
+        show_expected = True
+        show_info = False
+        show_reasons = True
+        show_subject = True
+        show_message = True
+        show_assertion = True
+
+
+
+
         """
         Runs the current operator with the subject arguments to test.
 

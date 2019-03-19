@@ -16,6 +16,13 @@ class SubjectMessageReporter(BaseReporter):
         if not hasattr(error, 'operator'):
             return None
 
+        show_subject = any([
+            self.ctx.show_subject,
+            self.from_operator('show_subject', False)
+        ])
+        if not show_subject:
+            return
+
         # Custom value human-friendly message
         value = self.from_operator(
             self.attribute, getattr(self.ctx, self.attribute, empty)
