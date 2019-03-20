@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from ..empty import empty
-from colora
+
 from .assertion import AssertionReporter
 import pprint
 
