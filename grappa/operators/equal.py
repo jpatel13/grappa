@@ -36,8 +36,7 @@ class EqualOperator(Operator):
 
     # Enable diff report
     show_diff = True
-    # disable myAssertion report
-    show_myAssertions = False
+
     # Operator keywords
     operators = ('equal', 'same')
 

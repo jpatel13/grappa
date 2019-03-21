@@ -10,12 +10,6 @@ class MyAssertionReporter(AssertionReporter):
 
     def run(self, error):
         # Assertion expression value
-        show_myAssertions = any([
-            self.ctx.show_myAssertions,
-            self.from_operator('show_myAssertions', False)
-        ])
-        if not show_myAssertions:
-            return
         subject = self.normalize(
             self.from_operator('subject', self.ctx.subject), use_raw=False)
 
